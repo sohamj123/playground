@@ -9,6 +9,12 @@ public class ReverseLinkedList {
             System.out.println(head.data);
             head = head.child;
         }
+        System.out.println("Reversing in place");
+        Node n = t.reverseInplace(t.makeList());
+        while (n != null) {
+            System.out.println(n.data);
+            n = n.child;
+        }
     }
 
     public Node makeList() {
@@ -20,8 +26,22 @@ public class ReverseLinkedList {
             head.child = n;
             head = head.child;
         }
-
         return retVal;
+    }
+    public Node reverseInplace(Node head){
+        Node a = null;
+        Node b = head;
+        Node c = head.child;
+
+        while (c != null){
+            b.child = a;
+            a = b;
+            b = c;
+            c = c.child;
+        }
+        
+        b.child = a;
+        return b;
     }
 
     public Node reverse(Node head) {
